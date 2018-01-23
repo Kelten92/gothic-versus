@@ -16,3 +16,15 @@ use Illuminate\Http\Request;
 Route::middleware('auth:api')->get('/user', function (Request $request) {
     return $request->user();
 });
+
+Route::resource('npcs', 'NpcsController');
+
+Route::resource('armors', 'ArmorsController');
+
+Route::get('weapons', 'WeaponsController@index');
+
+Route::get('weapons-one-handed', 'WeaponsController@OneHanded');
+Route::get('weapons-two-handed', 'WeaponsController@TwoHanded');
+Route::get('weapons-bows', 'WeaponsController@Bows');
+Route::get('weapons-crossbows', 'WeaponsController@Crossbows');
+Route::get('weapons-spells', 'WeaponsController@Spells');

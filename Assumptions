@@ -1,0 +1,10 @@
+Tables:
+-Users(id|nick|email|password|ore|)
+-Npcs
+-Bets(id|id_user|id_fight|bet_wage|winner|)
+-Fights(id|Npc_a|Npc_b|date|desc|)
+-Armors
+-Weapons
+
+Users X Bets = User has many bets , bet belongs to one User one to many,
+Fights X Bets = Bet has only one fight , Fight can belongs to many bets one to many,
