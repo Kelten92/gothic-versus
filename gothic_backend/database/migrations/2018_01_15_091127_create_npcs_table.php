@@ -22,8 +22,8 @@ class CreateNpcsTable extends Migration
             $table->integer('dexterity');
             $table->integer('mana');
             $table->integer('health');
-            $table->integer('1h_weapons');
-            $table->integer('2h_weapons');
+            $table->integer('one_handed');
+            $table->integer('two_handed');
             $table->integer('bow');
             $table->integer('crossbow');
             $table->integer('ring_of_magic');

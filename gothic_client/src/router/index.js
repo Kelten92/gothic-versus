@@ -1,6 +1,7 @@
 import Vue from 'vue'
 import Router from 'vue-router'
 import HelloWorld from '@/components/HelloWorld'
+import Npc from '@/components/Npc'
 import Npcs from '@/components/Npcs'
 import Index from '@/components/Index'
 import NewNpc from '@/components/NewNpc'
@@ -14,6 +15,11 @@ export default new Router({
 	    path: '/',
 	    name: 'Index',
 	    component: Index
+	  },
+	  {
+	    path: '/npc',
+	    name: 'Npc',
+	    component: Npc
 	  },
 	  {
 	    path: '/npcs',

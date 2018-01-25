@@ -62,10 +62,4 @@ export default {
   width: 100%;
   height: auto;
 }
-.article__body{
-  font-family: 'Libre Baskerville', serif;
-  font-size: 14px;
-  opacity: 0.8;
-  line-height: 1.8;
-}
 </style>
