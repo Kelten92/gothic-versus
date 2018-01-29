@@ -6,7 +6,7 @@
         <section class="row">
           <div class="col-md-12">
             <header class="npc__header">
-              <h2 class="important">Diego</h2>
+              <h2 class="important">{{ enpc.name }}</h2>
             </header>
           </div>
         </section>
@@ -14,7 +14,7 @@
         <section class="row">
 
           <div class="col-md-5">
-            <img src="cos.jpg" class="npc__img">
+            <img :src="enpc.avatar" class="npc__img">
           </div>
 
           <div class="col-md-7">
@@ -27,39 +27,39 @@
               <tbody>
                 <tr>
                   <th scope="row">Lvl</th>
-                  <td>20</td>
+                  <td>{{ enpc.lvl }}</td>
                 </tr>
                 <tr>
                   <th scope="row">Health</th>
-                  <td>360</td>
+                  <td>{{ enpc.health }}</td>
                 </tr>
                 <tr>
                   <th scope="row">Strength</th>
-                  <td>70</td>
+                  <td>{{ enpc.strength }}</td>
                 </tr>
                 <tr>
                   <th scope="row">Dexterity</th>
-                  <td>40</td>
+                  <td>{{ enpc.dexterity }}</td>
                 </tr>
                 <tr>
                   <th scope="row">Mana</th>
-                  <td>20</td>
+                  <td>{{ enpc.mana }}</td>
                 </tr>
                 <tr>
                   <th scope="row">One handed weapons</th>
-                  <td>60%</td>
+                  <td>{{ enpc.one_handed }}%</td>
                 </tr>
                 <tr>
                   <th scope="row">Two handed weapons</th>
-                  <td>20%</td>
+                  <td>{{ enpc.two_handed }}%</td>
                 </tr>
                 <tr>
                   <th scope="row">Weapon</th>
-                  <td>Guard Dagger</td>
+                  <td>{{ enpc.weapon.name }}</td>
                 </tr>
                 <tr>
                   <th scope="row">Armor</th>
-                  <td>Guard Armor</td>
+                  <td>{{ enpc.armor.name }}</td>
                 </tr>
               </tbody>
             </table>
@@ -84,7 +84,8 @@ export default {
     return {
       msg: 'Welcome to Your Vue.js App'
     }
-  }
+  },
+  props: ['enpc']
 }
 </script>
 

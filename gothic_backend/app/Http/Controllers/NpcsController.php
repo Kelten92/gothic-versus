@@ -5,6 +5,8 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Http\Requests\StoreNewNpc;
 use App\Npc;
+use App\Weapon;
+use App\Armor;
 
 class NpcsController extends Controller
 {
@@ -15,7 +17,7 @@ class NpcsController extends Controller
      */
     public function index()
     {
-        return Npc::all();
+        return Npc::with('Weapon', 'Armor')->get();
     }
 
     /**

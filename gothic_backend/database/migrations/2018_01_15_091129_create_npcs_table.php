@@ -16,7 +16,7 @@ class CreateNpcsTable extends Migration
         Schema::create('npcs', function (Blueprint $table) {
             $table->increments('id');
             $table->string('name');
-            $table->string('avatar');
+            $table->longText('avatar');
             $table->integer('lvl');
             $table->integer('strength');
             $table->integer('dexterity');

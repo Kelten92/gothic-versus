@@ -30,4 +30,9 @@ class Weapon extends Model
 	{
 	    return Weapon::where('type','spell')->get();
 	}
+
+	public function npcs()
+    {
+        return $this->hasMany('App\Npc','weapon_id', 'id');
+    }
 }

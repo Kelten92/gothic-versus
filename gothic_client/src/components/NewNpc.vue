@@ -12,7 +12,12 @@
         <div class="form-group">
             <label for="avatar">Avatar</label>
             <label>{{errors.avatar}}</label>
-            <input type="text" class="form-control" id="avatar" v-model="avatar">
+            <input 
+              v-on:change="uploadImage"
+              type="file" 
+              class="form-control" 
+              id="avatar" 
+              accept="image/*">
         </div>
 
         <div class="form-group">
@@ -98,6 +103,8 @@
         </div>
         
         <button class="btn btn--newsletter" type="submit">Submit</button>
+        <img :src="avatar" height="150" />
+        
     </form>
     </div>
   </div>
@@ -131,37 +138,51 @@ export default {
       ring_of_magic: '',
       weapon: '1',
       armor: '1',
+
+      avatar_url: '',
     }
   },
   methods: {
+    uploadImage: function(e) {
+      const files = e.target.files;
+      let filename = files[0].name;
+      if(filename.lastIndexOf('.') <= 0) {
+        return alert('Pls add a valid file!');
+      }
+      const fileReader = new FileReader();
+      fileReader.addEventListener('load', () => {
+        this.avatar = fileReader.result;
+      });
+     
+      fileReader.readAsDataURL(files[0]);
+      this.avatar_url = fileReader.result;
+    },
     onGetWeapons() {
       axios.get('http://127.0.0.1:8000/api/weapons')
         .then(
-            response => {
-              this.bronie = response.data
-            }
-          )
+          response => {
+            this.bronie = response.data
+          }
+        )
         .catch(
-            e => {
-              console.log(e);
-            }
-          )
+          e => {
+            console.log(e);
+          }
+        )
     },
-    
     onGetArmors() {
       axios.get('http://127.0.0.1:8000/api/armors')
         .then(
-            response => {
-              this.zbroje = response.data
-            }
-          )
+          response => {
+            this.zbroje = response.data
+          }
+        )
         .catch(
-            e => {
-              console.log(e);
-            }
-          )
+          e => {
+            console.log(e);
+          }
+        )
     },
-
     onSubmited() {
       axios.post('http://127.0.0.1:8000/api/npcs',{
         name: this.name,
@@ -180,26 +201,23 @@ export default {
         armor_id: this.armor,
       })
       .then(
-            response => {
-              console.log(response)
-            }
-          )
-        .catch(
-            e => {
-              this.errors = e.response.data.errors
-            }
-          )
-
-        
+        response => {
+          console.log(response)
+        }
+      )
+      .catch(
+        e => {
+          this.errors = e.response.data.errors
+        }
+      )  
     },
   },
   mounted: function () {
     this.$nextTick(function () {
        this.onGetArmors();
        this.onGetWeapons();
-
     })
-  }
+  },
 }
 </script>
 
