@@ -1,6 +1,5 @@
 <template>
   <div id="app">
-    <nav-bar></nav-bar>
     <header-main></header-main>
     <router-view/>
     <footer-main></footer-main>
@@ -8,12 +7,14 @@
 </template>
 
 <script>
+import TopBar from './components/TopBar.vue'
 import Header from './components/Header.vue'
 import Navbar from './components/Navbar.vue'
 import Footer from './components/Footer.vue'
 export default {
   name: 'app',
   components: {
+    'top-bar': TopBar,
     'header-main': Header,
     'nav-bar': Navbar,
     'footer-main': Footer
@@ -21,7 +22,7 @@ export default {
 }
 </script>
 
-<style>
+<style lang="scss">
 *{
   box-sizing: border-box;
 }
@@ -30,49 +31,34 @@ body{
   padding:0;
 }
 #app {
-  font-family: 'Cinzel', serif;
+  font-family: 'Libre Baskerville', serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   color: #D5D4D4;
   font-size: 16px;
-  background: #111111;
+  background:#111111;
 }
 h1,h2,h3,h4,h5{
+  font-family: 'Cinzel', serif;
   font-weight: normal;
 }
 .important{
   color: #bea771;
 }
-a{
-  color: #bea771;
-  font-size: 0.9em;
-  transition: 0.8s;
-}
-a:hover{
-  text-shadow: 0px 0px 2px #ada771;
-}
-.btn{
-  display: inline;
-  width: 96px;
-  height: 38px;
-  padding: 5px 10px;
-  border-radius: 2px;
-  margin:5px;
-  transition: 0.7s;
-  opacity: 0.8;
-  font-weight: bold;
-}
-.btn:hover{
-  opacity: 1;
-}
-.btn > a{
-  text-decoration: none;
-  color: #D5D4D4;
+.pattern{
+  margin:0;
+  background-image: radial-gradient( rgba(35, 30, 30, 0.61), rgba(32, 26, 26, 0.3)),
+                  url('./assets/textura.png');
 }
 .article__body{
-  font-family: 'Libre Baskerville', serif;
   font-size: 14px;
   opacity: 0.8;
   line-height: 1.8;
 }
+
+
+
+
+
+
 </style>

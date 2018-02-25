@@ -29,8 +29,8 @@
         </div>
         <div class="col-md-4">
         <div class="footer__social">
-          <a href="#"><i class="fa fa-github-square" aria-hidden="true"></i></a>
-          <a href=""><i class="fa fa-twitter-square" aria-hidden="true"></i></a>
+          <a href="https://github.com/"><i class="fa fa-github-square" aria-hidden="true"></i></a>
+          <a href="https://twitter.com/?lang=pl"><i class="fa fa-twitter-square" aria-hidden="true"></i></a>
         </div>
         </div>
       </div>
@@ -73,5 +73,11 @@ footer{
 }
 .footer__social{
   font-size: 36px;
+}
+.fa-github-square{
+  color: white;
+}
+.fa-twitter-square{
+  color: #0084b4;
 }
 </style>

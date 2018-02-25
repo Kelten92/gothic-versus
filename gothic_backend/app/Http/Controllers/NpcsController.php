@@ -59,6 +59,7 @@ class NpcsController extends Controller
                 'message' => 'Record not found',
             ], 404);
         }
+        return $result;
     }
 
     /**

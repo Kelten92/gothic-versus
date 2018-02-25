@@ -1,10 +1,11 @@
 import Vue from 'vue'
 import Router from 'vue-router'
-import HelloWorld from '@/components/HelloWorld'
-import Npc from '@/components/Npc'
-import Npcs from '@/components/Npcs'
 import Index from '@/components/Index'
-import NewNpc from '@/components/NewNpc'
+import Npcs from '@/components/npc/Npcs'
+import NewNpc from '@/components/npc/NewNpc'
+import NpcProfile from '@/components/npc/NpcProfile'
+import AdminPanel from '@/components/admin/AdminPanel'
+
 
 Vue.use(Router)
 
@@ -17,20 +18,26 @@ export default new Router({
 	    component: Index
 	  },
 	  {
-	    path: '/npc',
-	    name: 'Npc',
-	    component: Npc
-	  },
-	  {
 	    path: '/npcs',
 	    name: 'Npcs',
 	    component: Npcs
 	  },
 	  {
-	    path: '/new-npc',
+	    path: '/npc-new',
 	    name: 'NewNpc',
 	    component: NewNpc
-	  }
-	 
+	  },
+	  {
+	    path: '/npc-profile/:id',
+	    name: 'NpcProfile',
+	    component: NpcProfile,
+	    props: true
+	  },
+	  {
+	    path: '/admin-panel',
+	    name: 'AdminPanel',
+	    component: AdminPanel
+	  },
+	  
 	]
 })
