@@ -4,6 +4,7 @@ namespace App\Services;
 
 use App\Npc;
 
+
 class FightingService {
 	
 	public $playerA;
