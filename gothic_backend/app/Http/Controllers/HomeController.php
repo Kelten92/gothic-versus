@@ -41,4 +41,23 @@ class HomeController extends Controller
         return view('fight', compact('descryptions'));
         
     }
+
+    public function test(){
+
+        for ($x = 0; $x <= 10; $x++) {
+
+            echo "The number is: $x <br>";
+            
+            if($x > 0){
+                $dodatek = $tablica[$x-1] * 0.1;
+                $tablica[$x] = floor($tablica[$x-1] + $dodatek);
+                
+                  
+            } else{
+                $tablica[$x] = 1000;
+            }
+        }
+        print_r($tablica); 
+
+    }
 }

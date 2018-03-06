@@ -40,7 +40,8 @@ class calcFight extends Command
     public function handle()
     {   
         $now = date("Y-m-d");
-        $fight = Fight::whereDate( 'start_date','>', $now );
-        $fight->delete();
+        //$fight = Fight::whereDate( 'start_date','<', $now );
+        $fight = Fight::where('id',3);
+        $fight->update(['descryption' => 'some random string']);
     }
 }

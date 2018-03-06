@@ -24,8 +24,8 @@ class Kernel extends ConsoleKernel
      */
     protected function schedule(Schedule $schedule)
     {
-        $schedule->command('calculate:fight')
-                ->dailyAt('18:41');
+        //$schedule->command('calculate:fight')
+                //->everyFiveMinutes();
     }
 
     /**
