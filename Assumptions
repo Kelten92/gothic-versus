@@ -5,6 +5,10 @@ Tables:
 -Fights(id|Npc_a|Npc_b|date|desc|)
 -Armors
 -Weapons
+-skills(id|user_id|lvl|str|dex|int|sta|ale|mana|exp_points|exp_points_to_next_lvl)
+-expeditions
+-sources
+
 
 Users X Bets = User has many bets , bet belongs to one User one to many,
 Fights X Bets = Bet has only one fight , Fight can belongs to many bets one to many,
