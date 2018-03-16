@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateExpeditionsTable extends Migration
+class CreateExpeditionUserTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,12 +13,13 @@ class CreateExpeditionsTable extends Migration
      */
     public function up()
     {
-        Schema::create('expeditions', function (Blueprint $table) {
+        Schema::create('expedition_user', function (Blueprint $table) {
             $table->increments('id');
             $table->integer('user_id')->unsigned();
             $table->foreign('user_id')->references('id')->on('users');
-            $table->string('length');
-            $table->dateTime('end_date');
+            $table->integer('expedition_id')->unsigned();
+            $table->foreign('expedition_id')->references('id')->on('expeditions');
+            $table->datetime('end_date');
             $table->timestamps();
         });
     }
@@ -30,6 +31,6 @@ class CreateExpeditionsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('expeditions');
+        Schema::dropIfExists('expedition_user');
     }
 }

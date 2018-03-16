@@ -9,16 +9,16 @@
                 <div class="panel-body">
                 <form action="{{url('/expedition')}}" method="POST">
                     {{ csrf_field() }}
-                    <h3>Expedition length</h3>
+                    <h3>Expedition difficult_lvl</h3>
 
                     <label>
-                        <input type="radio" name="length" value="easy"> Easy
+                        <input type="radio" name="difficult_lvl" value="easy"> Easy
                       </label>
                       <label>
-                        <input type="radio" name="length" value="medium"> Medium
+                        <input type="radio" name="difficult_lvl" value="medium"> Medium
                       </label>
                       <label>
-                        <input type="radio" name="length" value="hard"> Hard
+                        <input type="radio" name="difficult_lvl" value="hard"> Hard
                       </label>
                       <label>
                         <input type="hidden" name="user_id" value="{{Auth::id()}}"> User

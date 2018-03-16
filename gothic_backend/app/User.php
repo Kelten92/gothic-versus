@@ -27,8 +27,19 @@ class User extends Authenticatable
         'password', 'remember_token',
     ];
 
-    public function expedition()
+    public function expeditions()
     {
-        return $this->hasOne('App\Expedition','user_id', 'id');
+        return $this->belongsToMany('App\Expedition', 'expedition_user',
+         'user_id', 'expedition_id')->withPivot('end_date');
+    }
+
+    public function skills()
+    {
+        return $this->hasOne('App\Skill', 'user_id', 'id');
+    }
+
+    public function resources()
+    {
+        return $this->hasOne('App\Resource', 'user_id', 'id');
     }
 }

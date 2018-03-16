@@ -1,16 +1,21 @@
 <?php
 
 namespace App\Services\GameEngine;
-use App\Expedition;
+
 use Auth;
 use App\User;
+use App\Expedition;
 
 class ExpeditionService {
     public $expedition;
+    public $user;
 
-    public function expeditionAlreadyStarting($expedition) {
-        if($expedition){
-            $this->expedition = $expedition;
+    //param User $user;
+    //return true or false;
+    public function expeditionInProgress($user) {
+        if($user->expeditions->first()){
+            $this->expedition = $user->expeditions->first();
+            $this->user = $user;
             return true;
         }
         else{
@@ -18,9 +23,9 @@ class ExpeditionService {
         }
     }
 
-    public function expeditionComplete() {
+    public function expeditionIsComplete() {
         $now = date("Y-m-d H:i:s");
-        if($this->expedition->end_date < $now) {
+        if($this->expedition->pivot->end_date < $now) {
             return true;
         }
         else {
@@ -28,41 +33,60 @@ class ExpeditionService {
         }
     }
 
-    private function randomExpeditionType() {
-        $types = array("thief", "warrior", "explorer", "hunt");
-        $index = random(0,3);
-        $type = $types[$index];
+    public function randomExpeditionEntity($diff_lvl) {
+        $quest = Expedition::where('difficult_lvl', '=', $diff_lvl )
+                            ->inRandomOrder()->first();      
 
+        return $quest->id;
+    }
+
+    private function successChance($skills, $exp_points) {
+        $chance = $skills / $exp_points * 3000;
+        return $chance;
     }
 
     public function calculateExpedition() {
-        $type = $this->randomExpeditionType();
-        $user = Auth::user();
+        $type = $this->expedition->type;
+        $diff_lvl =  $this->expedition->difficult_lvl;
         switch ($type) {
-            case 'thief':
-                $testing_skills_value = $user->skills->agi + $user->skills->dex;
-                if($testing_skills_value / $user->skills->lvl)
+            case 'exploration':
+            
+                $testing_skills_value = $this->user->skills->alertness + 
+                                        $this->user->skills->stamina;
+                $exp_points = $this->user->resources->exp_points;
+                $chance = $this->successChance($testing_skills_value, $exp_points);
+                if($diff_lvl == 'easy') $chance -= 5;
+                else if($diff_lvl == 'medium') $chance -= 15;
+                else $chance -= 25;
+                $mod = rand(1,100);
+                echo $chance;
+                echo $mod;
+
+
+                if($chance > $mod ) echo "Wyprawa udana";
+                else echo "Wyprawa nieudana";
+            
             break;
             
             case 'warrior':
-                $testing_skills_value = $user->skills->str + $user->skills->sta;
+               echo 'warrior';
             break;
 
-            case 'explorer':
-                $testing_skills_value = $user->skills->sta + $user->skills->ale;
+            case 'test':
+               echo 'test';
             break;
 
             case 'hunt':
-                $testing_skills_value = $user->skills->ale + $user->skills->dex;
+               echo 'hunt';
             break;
 
             default:
-                $testing_skills_value = 1;
+               echo 'defult';
             break;
         }
-
-
     }
+
+   
 
     
 
