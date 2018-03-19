@@ -5,6 +5,8 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Npc;
 use App\Services\FightingService;
+use Auth;
+use App\User;
 
 class HomeController extends Controller
 {   
@@ -26,8 +28,10 @@ class HomeController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function index()
-    {
-        return view('home');
+    {   
+        $skills = Auth::user()->skills;
+        $resources = Auth::user()->resources;
+        return view('home.index', compact('skills','resources'));
     }
 
 
@@ -43,21 +47,6 @@ class HomeController extends Controller
     }
 
     public function test(){
-
-        for ($x = 0; $x <= 10; $x++) {
-
-            echo "The number is: $x <br>";
-            
-            if($x > 0){
-                $dodatek = $tablica[$x-1] * 0.1;
-                $tablica[$x] = floor($tablica[$x-1] + $dodatek);
-                
-                  
-            } else{
-                $tablica[$x] = 1000;
-            }
-        }
-        print_r($tablica); 
-
+        return date("Y-m-d H:i:s");
     }
 }

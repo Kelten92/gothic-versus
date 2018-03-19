@@ -8,7 +8,7 @@
     <!-- CSRF Token -->
     <meta name="csrf-token" content="{{ csrf_token() }}">
 
-    <title>{{ config('app.name', 'Laravel') }}</title>
+    <title>{{ config('app.name', 'Kolonia') }}</title>
 
     <!-- Styles -->
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
@@ -70,8 +70,35 @@
                 </div>
             </div>
         </nav>
-
-        @yield('content')
+        <div class="container">
+            <div class="row">
+                <nav class="col-md-3">
+                    <ul class="nav flex-column">
+                        <li class="nav-item">
+                            <a class="nav-link active" href="{{url('/home')}}">Index</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="{{url('/expedition')}}">Expedition</a>
+                        </li>
+                        <li class="nav-item">
+                                @guest
+                            <a class="nav-link" href="{{url('/message')}}">Messages
+                                <span><p>(0)</p></span>
+                            </a>
+                                @else
+                            <a class="nav-link" href="{{url('/message')}}">Messages
+                                <span><p>({{ Auth::user()->notifications->count() }})</p></span>
+                            </a>
+                                @endguest
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link disabled" href="#">Premium</a>
+                        </li>
+                    </ul>
+                </nav>
+                <main class="col-md-9">@yield('content')</main>
+            </div>
+        </div>        
     </div>
 
     <!-- Scripts -->

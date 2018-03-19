@@ -5,6 +5,7 @@ namespace App\Services\GameEngine;
 use Auth;
 use App\User;
 use App\Expedition;
+use App\Notifications\ExpeditionReport;
 
 class ExpeditionService {
     public $expedition;
@@ -40,8 +41,11 @@ class ExpeditionService {
         return $quest->id;
     }
 
-    private function successChance($skills, $exp_points) {
+    private function successChance($skills, $exp_points, $diff_lvl) {
         $chance = $skills / $exp_points * 3000;
+        if($diff_lvl == 'easy') $chance -= 5;
+        else if($diff_lvl == 'medium') $chance -= 15;
+        else $chance -= 25;
         return $chance;
     }
 
@@ -54,18 +58,16 @@ class ExpeditionService {
                 $testing_skills_value = $this->user->skills->alertness + 
                                         $this->user->skills->stamina;
                 $exp_points = $this->user->resources->exp_points;
-                $chance = $this->successChance($testing_skills_value, $exp_points);
-                if($diff_lvl == 'easy') $chance -= 5;
-                else if($diff_lvl == 'medium') $chance -= 15;
-                else $chance -= 25;
+                $chance = $this->successChance($testing_skills_value, $exp_points, $diff_lvl);
                 $mod = rand(1,100);
+                $exp_reward = rand(12,18);
+
+                if($chance > $mod ) {
+                    $this->user->resources->update(['exp_points' => $exp_points + $exp_reward  ]);
+                }
                 echo $chance;
                 echo $mod;
-
-
-                if($chance > $mod ) echo "Wyprawa udana";
-                else echo "Wyprawa nieudana";
-            
+                $this->user->notify(new ExpeditionReport($this->expedition));
             break;
             
             case 'warrior':

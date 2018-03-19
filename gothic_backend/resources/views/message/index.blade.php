@@ -5,10 +5,11 @@
     <div class="row">
         <div class="col-md-8">
             <div class="panel panel-default">
-                <div class="panel-heading">You're in expedition</div>
+                <div class="panel-heading">Your's Messages</div>
                 <div class="panel-body">
-                    <h3>Time to ending:</h3>
-                    <p>{{ $status }}</p>
+                    @foreach($notifications as $notification)
+                <h5><a href="{{ URL('/message/'.$notification->id )}}"> {{ $notification->data['name'] }}</a></h5>
+                    @endforeach
                 </div>
             </div>
         </div>
