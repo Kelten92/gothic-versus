@@ -18,6 +18,9 @@ class EventServiceProvider extends ServiceProvider
             'App\Listeners\InsertSkills',
 
         ],
+        'App\Events\PlayerPromoted' => [
+            'App\Listeners\UpdateResources',
+        ],
     ];
 
     /**

@@ -10,15 +10,16 @@ use Illuminate\Notifications\Messages\MailMessage;
 class ExpeditionReport extends Notification
 {
     use Queueable;
-    public $expedition;
+  
+    public $report;
     /**
      * Create a new notification instance.
      *
      * @return void
      */
-    public function __construct($expedition)
+    public function __construct($report)
     {
-        $this->expedition = $expedition;
+        $this->report = $report;
     }
 
     /**
@@ -55,8 +56,13 @@ class ExpeditionReport extends Notification
     public function toArray($notifiable)
     {
         return [
-            'name' => $this->expedition->name,
-            'descryption' => $this->expedition->descryption,
+            'name' =>  $this->report['name'],
+            'descryption' =>  $this->report['descryption'],
+            'chance' => $this->report['chance'],
+            'status' => $this->report['status'],
+            'exp_reward' => $this->report['exp_reward'],
+            'arcanit_reward' => $this->report['arcanit_reward'],
+            'adamant_reward' => $this->report['adamant_reward'],
         ];
     }
 }

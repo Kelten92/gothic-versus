@@ -23,5 +23,10 @@ Route::get('/home', 'HomeController@index')->name('home');
 Route::get('/fight', 'HomeController@fight');
 Route::get('/test', 'HomeController@test');
 
-Route::get('/expedition', 'GameEngine\ExpeditionController@index');
-Route::post('/expedition', 'GameEngine\ExpeditionController@store');
+
+
+Route::middleware(['auth'])->group(function () {
+    Route::get('/home', 'HomeController@index')->name('home');
+    Route::get('/expedition', 'GameEngine\ExpeditionController@index');
+    Route::post('/expedition', 'GameEngine\ExpeditionController@new');
+});

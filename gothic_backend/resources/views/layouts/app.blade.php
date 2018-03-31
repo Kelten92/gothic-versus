@@ -78,7 +78,25 @@
                             <a class="nav-link active" href="{{url('/home')}}">Index</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="{{url('/expedition')}}">Expedition</a>
+                            <a class="nav-link" href="{{url('/home')}}">Arena</a>
+                        </li>
+                        <li class="nav-item">
+                            @guest
+                                <a class="nav-link" href="{{url('/expedition')}}">Expedition</a>
+                            @else
+                                <a class="nav-link" href="{{url('/expedition')}}">Expedition
+                                    @if(Auth::user()->expeditions->first() !== NULL)
+                                        @if(Auth::user()->expeditions->first()->pivot->end_date < date("Y-m-d H:i:s") )
+                                            <span><p>(Status:zakończona sprawdź)</p></span>
+                                        @else
+                                            <span><p>(Status:w trakcie)</p></span>
+                                        @endif
+                                    @else
+                                    <span><p>(Status:brak)</p></span>
+                                    @endif  
+                                </a>
+                            @endguest
+                            
                         </li>
                         <li class="nav-item">
                                 @guest

@@ -3,34 +3,26 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Npc;
-use App\Services\FightingService;
-use Auth;
 use App\User;
+use App\Repositories\UserRepository;
+
 
 class HomeController extends Controller
 {   
-    public $fightService;
+    protected $userRepo;
 
-    /**
-     * Create a new controller instance.
-     *
-     * @return void
-     */
-    public function __construct(FightingService $fight)
-    {
-        $this->fightService = $fight;
+    public function __construct(UserRepository $user) {
+        $this->userRepo = $user;
     }
-
     /**
      * Show the application dashboard.
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(User $user)
     {   
-        $skills = Auth::user()->skills;
-        $resources = Auth::user()->resources;
+        $skills = $this->userRepo->getSkills();
+        $resources = $this->userRepo->getResources();
         return view('home.index', compact('skills','resources'));
     }
 
@@ -47,6 +39,6 @@ class HomeController extends Controller
     }
 
     public function test(){
-        return date("Y-m-d H:i:s");
+        return $this->service->test();
     }
 }
