@@ -4,9 +4,9 @@
 <div class="container">
     <div class="row">
         <div class="col-md-8">
-            <div class="panel panel-default">
-                <div class="panel-heading">Start new expedition</div>
-                <div class="panel-body">
+            <div class="standard-panel">
+                <div class="">Start new expedition</div>
+                <div class="">
                 <form action="{{url('/expedition')}}" method="POST">
                     {{ csrf_field() }}
                     <h3>Expedition difficult_lvl</h3>
@@ -21,7 +21,7 @@
                         <input type="radio" name="difficult_lvl" value="hard"> Hard
                       </label>
                       <label>
-                        <input type="hidden" name="user_id" value="{{Auth::id()}}"> User
+                        <input type="hidden" name="user_id" value="{{Auth::id()}}">
                       </label>
 
                     <input type="submit" value="start">

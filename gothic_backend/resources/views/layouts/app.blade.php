@@ -8,10 +8,15 @@
     <!-- CSRF Token -->
     <meta name="csrf-token" content="{{ csrf_token() }}">
 
-    <title>{{ config('app.name', 'Kolonia') }}</title>
+    <title>{{ config('app.name', 'Laravel') }}</title>
 
     <!-- Styles -->
+
+    <link href="https://fonts.googleapis.com/css?family=Libre+Baskerville" rel="stylesheet">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.9/css/all.css" 
+    integrity="sha384-5SOiIsAziJl6AWe0HWRKTXlfcSHKmYV4RBF18PPJ173Kzn7jzMyFuTtk8JA7QQG1" crossorigin="anonymous">
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
+    <link href="{{ asset('css/style.css') }}" rel="stylesheet">
 </head>
 <body>
     <div id="app">
@@ -72,47 +77,46 @@
         </nav>
         <div class="container">
             <div class="row">
-                <nav class="col-md-3">
-                    <ul class="nav flex-column">
-                        <li class="nav-item">
-                            <a class="nav-link active" href="{{url('/home')}}">Index</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="{{url('/home')}}">Arena</a>
-                        </li>
-                        <li class="nav-item">
-                            @guest
-                                <a class="nav-link" href="{{url('/expedition')}}">Expedition</a>
+                <nav class="col-md-3" style="overflow:hidden">
+                    <div class="nav-tile" title="home"><a href="{{url('/home')}}">
+                        <i class="fas fa-home"></i><p class="status">Home</p></a>
+                    </div>
+                    <div class="nav-tile" title="arena"><a href="{{url('/home')}}">
+                        <i class="fas fa-chess-board"></i><p class="status">Arena</p></a></div>
+                    @guest
+                    <div class="nav-tile"><a href="{{url('/expedition')}}"><i class="fas fa-tree"></i></a></div>
+                    @else                    
+                    <div class="nav-tile" title="expedition"><a href="{{url('/expedition')}}"><span><i class="fas fa-tree"></i>
+                        @if(Auth::user()->expeditions->first() !== NULL)
+                            @if(Auth::user()->expeditions->first()->pivot->end_date < date("Y-m-d H:i:s") )
+                                <p class="status status-red">Finished</p>
                             @else
-                                <a class="nav-link" href="{{url('/expedition')}}">Expedition
-                                    @if(Auth::user()->expeditions->first() !== NULL)
-                                        @if(Auth::user()->expeditions->first()->pivot->end_date < date("Y-m-d H:i:s") )
-                                            <span><p>(Status:zakończona sprawdź)</p></span>
-                                        @else
-                                            <span><p>(Status:w trakcie)</p></span>
-                                        @endif
-                                    @else
-                                    <span><p>(Status:brak)</p></span>
-                                    @endif  
-                                </a>
-                            @endguest
-                            
-                        </li>
-                        <li class="nav-item">
-                                @guest
-                            <a class="nav-link" href="{{url('/message')}}">Messages
-                                <span><p>(0)</p></span>
-                            </a>
-                                @else
-                            <a class="nav-link" href="{{url('/message')}}">Messages
-                                <span><p>({{ Auth::user()->notifications->count() }})</p></span>
-                            </a>
-                                @endguest
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link disabled" href="#">Premium</a>
-                        </li>
-                    </ul>
+                            <p class="status status-orange">In progress</p>
+                            @endif
+                        @else
+                            <p class="status status-green">Start new</p>
+                        @endif  
+                    
+                    </span></a>
+                    </div>
+                    @endguest
+
+                    @guest
+                    <div class="nav-tile"><a href="{{url('/message')}}"><i class="fas fa-envelope"></i>
+                        <p class="status">(0)</p>
+                    </a></div>
+                    @else
+                    <div class="nav-tile"><a href="{{url('/message')}}"><i class="fas fa-envelope"></i>
+                        <p class="status">({{ Auth::user()->notifications->count() }})</p>
+                    </a></div>
+                    @endguest
+                    <div class="nav-tile"><a href="{{url('/training')}}">
+                        <i class="fas fa-graduation-cap"></i><p class="status">Training</p></a></div>
+                    
+                    <div class="nav-tile"><a href="{{ route('logout') }}" onclick="event.preventDefault();
+                        document.getElementById('logout-form').submit();">
+                        <i class="fas fa-sign-out-alt"></i><p class="status">Log out</p></a></div>
+
                 </nav>
                 <main class="col-md-9">@yield('content')</main>
             </div>

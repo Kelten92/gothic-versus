@@ -1,0 +1,85 @@
+body{
+    font-family: 'Libre Baskerville', serif;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    color: #a2a2a2;
+    font-size: 16px;
+    background:#1f1e21;
+}
+h1,h2,h3,h4,h5{
+    text-transform: uppercase;
+    color: white;
+}
+table,tr,td{
+    border: 1px solid #313032;
+}
+table{
+    width: 100%;
+    margin:10px 0;
+}
+td{
+    padding: 10px 30px;
+}
+p.small{
+    font-size: 12px;
+    text-align: justify;
+}
+.status{
+    font-size: 10px;
+    text-align: center;
+    text-decoration-style: none;
+    color:#a2a2a2;
+}
+.status-green{
+    color: seagreen;
+    margin:0; 
+}
+.status-orange{
+    color: sandybrown;
+    margin:0;
+}
+.status-red{
+    color: orangered;
+    margin:0; 
+}
+.nav-tile{
+    width: 64px;
+    height: 64px;
+    float: left;
+    background: #19181a;
+    margin:12px;
+    border-radius: 2px;
+    border:1px solid #313032;
+    text-align: center;
+    font-size: 26px;
+}
+.nav-tile a:hover{
+    text-decoration: none;
+}
+.fas{
+    color: #a2a2a2;
+}
+.character-img{
+    margin: 10px 0;
+}
+.standard-panel{
+    border-radius: 2px;
+    border:1px solid #313032;
+    padding:20px;
+    margin-top:15px;
+    overflow: hidden;
+}
+.teacher{
+    text-align: center;
+    border:1px solid #a2a2a2;
+    border-radius: 2px;
+    padding:10px;
+}
+button.train{
+    background: transparent;
+    color:white;
+    border:2px solid white;
+    border-bottom: 3px solid white;
+    padding:5px 20px;
+}
+

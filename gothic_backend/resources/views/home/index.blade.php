@@ -1,68 +1,105 @@
 @extends('layouts.app')
 
-@section('content')
+@section('content')     
+<section id="character-presentacion">
     <div class="row">
-        <div class="col-md-8 col-md-offset-2">
-            <div class="panel panel-default">
-            <div class="panel-heading">Hello {{Auth::user()->name}}</div>
-                <div class="panel-body">
-                    <ul class="list-group">
-                        <li class="list-group-item">
-                            <p>Lvl: {{$skills->lvl}}</p>
-                        </li>
-                        <li class="list-group-item">
-                            <p>health: {{$skills->health}}</p>
-                        </li>
-                        <li class="list-group-item">
-                            <p>strength: {{$skills->strength}}</p>
-                        </li>
-                        <li class="list-group-item">
-                            <p>dexterity: {{$skills->dexterity}}</p>
-                        </li>
-                        <li class="list-group-item">
-                            <p>intelligence: {{$skills->intelligence}}</p>
-                        </li>
-                        <li class="list-group-item">
-                            <p>stamina: {{$skills->stamina}}</p>
-                        </li>
-                        <li class="list-group-item">
-                            <p>alertness: {{$skills->alertness}}</p>
-                        </li>
-                        <li class="list-group-item">
-                            <p>knowledge: {{$skills->knowledge}}</p>
-                        </li>
-                        <li class="list-group-item">
-                            <p>charisma: {{$skills->charisma}}</p>
-                        </li>
-                        <li class="list-group-item">
-                            <p>stealth: {{$skills->stealth}}</p>
-                        </li>
-                        <li class="list-group-item">
-                            <p>inquisitiveness: {{$skills->inquisitiveness}}</p>
-                        </li>
-                    </ul>
-                </div>
-                <div class="panel-body">
-                        <ul class="list-group">
-                            <li class="list-group-item">
-                                <p>Gold Coin: {{$resources->gold_coin}}</p>
-                            </li>
-                            <li class="list-group-item">
-                                <p>adamant_ore: {{$resources->adamant_ore}}</p>
-                            </li>
-                            <li class="list-group-item">
-                                <p>arcanit_ore: {{$resources->arcanit_ore}}</p>
-                            </li>
-                            <li class="list-group-item">
-                                <p>exp_points: {{$resources->exp_points}}</p>
-                            </li>
-                            <li class="list-group-item">
-                                <p>exp_next_lvl: {{$resources->exp_points_breakpoint}}</p>
-                            </li>
-                        </ul>
-                    </div>
-            </div>
+        <div class="character-info col-md-3 col-xs-12">
+            <img src="http://via.placeholder.com/144x174" class="character-img">
+        </div>
+        <div class="character-info col-md-9 col-xs-12">
+            <table>
+                <tr>
+                    <td>Name:</td>
+                    <td>{{Auth::user()->name}}</td>
+                </tr>
+                <tr>
+                    <td>Level:</td>
+                    <td>{{$skills->lvl}}</td>
+                </tr>
+                <tr>
+                    <td>Health:</td>
+                    <td>{{$skills->health}}</td>
+                </tr>
+                <tr>
+                    <td>Experience:</td>
+                    <td>{{$resources->exp_points}}</td>
+                </tr>
+                <tr>
+                    <td>To next lvl:</td>
+                    <td>{{$resources->exp_points_breakpoint}}</td>
+                </tr>
+                <tr>
+                    <td>Training points:</td>
+                    <td>{{$resources->learning_points}}</td>
+                </tr>
+            </table>
         </div>
     </div>
+
+    <div class="row">
+        <div class="character-resources col-md-6 col-xs-12">
+            <table>
+                <tr>
+                    <td>Gold Coin:</td>
+                    <td>{{$resources->gold_coin}}</td>
+                </tr>
+                <tr>
+                    <td>Adamant_ore:</td>
+                    <td>{{$resources->adamant_ore}}</td>
+                </tr>
+                <tr>
+                    <td>Arcanit_ore:</td>
+                    <td>{{$resources->arcanit_ore}}</td>
+                </tr>
+            </table>
+        </div>
+
+        <div class="character-skills col-md-6 col-xs-12">
+                <table>
+                    <tr>
+                        <td>strength:</td>
+                        <td>{{$skills->strength}}</td>
+                    </tr>
+                    <tr>
+                        <td>dexterity:</td>
+                        <td>{{$skills->dexterity}}</td>
+                    </tr>
+                    <tr>
+                        <td>intelligence:</td>
+                        <td>{{$skills->intelligence}}</td>
+                    </tr>
+                    <tr>
+                        <td>stamina:</td>
+                        <td>{{$skills->stamina}}</td>
+                    </tr>
+                    <tr>
+                        <td>alertness:</td>
+                        <td>{{$skills->alertness}}</td>
+                    </tr>
+                    <tr>
+                        <td>knowledge:</td>
+                        <td>{{$skills->knowledge}}</td>
+                    </tr>
+                    <tr>
+                        <td>charisma:</td>
+                        <td>{{$skills->charisma}}</td>
+                    </tr>
+                    <tr>
+                        <td>stealth:</td>
+                        <td>{{$skills->stealth}}</td>
+                    </tr>
+                    <tr>
+                        <td>inquisitiveness:</td>
+                        <td>{{$skills->inquisitiveness}}</td>
+                    </tr>
+                </table>
+            </div>
+    </div>
+
+    
+
+</section>
+       
+    
 
 @endsection
